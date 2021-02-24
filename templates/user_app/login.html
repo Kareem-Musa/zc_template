@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="mx-auto col-sm-8">
+      <h2>تسجيل دخول</h2>
+      {% if form.non_field_errors %}
+
+      <div class="alert alert-danger" role="alert">
+        {% for error in form.non_fields_errors %}
+          <p>{{ error }}</p>
+          {% endfor %}
+      </div>
+
+      {% endif %}
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+          {{ field.label_tag }}
+          {{ field }}
+          {% for error in field.errors %}
+           <p style="color:red;">{{ error }}</p>
+          {% endfor %}
+        </p>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">دخول</button>
+    </form>
+  </div>
+{% endblock content %}

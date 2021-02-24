@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p style="font-size:20px; font-weight:bold;color:grey;">الوحدات الادارية</p>
+  <hr>
+    <table>
+      <thead>
+        <tr>
+          <th>الرقم</th>
+          <th>الوحدة الادارية</th>
+          <th>الولاية</th>
+          <th>المحلية</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          {% if unity_list %}
+          {% for unity in unity_list %}
+            <tr>
+              <td name='id'>{{ unity.id }}</td>
+              <td name='state'>{{ unity.name }}</td>
+              <td name='state'>{{ unity.state.name }}</td>
+              <td name='state'>{{ unity.locality.name }}</td>
+              <td><button class="button"
+                onclick="editState({{unity.id}})" data-toggle="modal" data-target="#myModal">تعديل</button></td>
+              <td><button class="button"
+                onclick="deleteState({{unity.id}})">حذف</button></td>
+            </tr>
+          {% endfor %}
+          {% else %}
+          {% endif %}
+        </tbody>
+      </table>
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>المحليات</p>
+  <hr>
+
+    <table clss="responsive-card-table unstriped">
+      <thead>
+        <tr class="table-expand-row">
+          <th>الرقم</th>
+          <th>المحلية</th>
+          <th>الولاية</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tbody>
+          {% if localities %}
+          {% for locality in localities %}
+            <tr class="table-expand-row">
+              <td name='id'>{{ locality.id }}</td>
+              <td name='locality'>{{ locality.name }}</td>
+              <td name='state'>{{ locality.state.name }}</td>
+              <td><button class="btn btn-success form-control"
+                onclick="editState({{state.id}})" data-toggle="modal" data-target="#myModal">تعديل</button></td>
+              <td><button class="btn btn-danger form-control"
+                onclick="deleteState({{state.id}})">حذف</button></td>
+            </tr>
+          {% endfor %}
+          {% else %}
+          {% endif %}
+        </tbody>
+        </thead>
+      </table>
+
+{% endblock %}
+{% block js %}
+$('[data-open-details]').click(function (e) {
+e.preventDefault();
+$(this).next().toggleClass('is-active');
+$(this).toggleClass('is-active');
+});
+
+{% endblock %}
